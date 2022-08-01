@@ -1,0 +1,49 @@
+repos:
+  - repo: https://github.com/psf/black
+    rev: 22.3.0
+    hooks:
+      - id: black
+        args: [
+            --line-length=120,
+        ]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-builtin-literals
+      - id: check-case-conflict
+      - id: check-executables-have-shebangs
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-toml
+      - id: check-xml
+      - id: check-yaml
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v0.950
+    hooks:
+      - id: mypy
+        args: [
+            --no-strict-optional,
+            --ignore-missing-imports,
+            --warn-no-return,
+        ]
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 4.0.1
+    hooks:
+      - id: flake8
+        name: flake8 (python)
+        additional_dependencies:
+          - flake8-pep3101
+          - flake8-string-format
+          - flake8-typing-imports
+        types: [python]
+        args: [
+            --max-complexity=10,
+            --max-line-length=150,
+            --min-python-version=3.9.0,
+        ]
