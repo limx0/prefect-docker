@@ -8,6 +8,7 @@ from python_on_whales.components.image.cli_wrapper import ValidImage
 from python_on_whales.components.network.cli_wrapper import ValidNetwork
 from python_on_whales.components.volume.cli_wrapper import VolumeDefinition
 from python_on_whales.utils import ValidPath
+from python_on_whales.exceptions import NoSuchContainer
 
 
 @task
@@ -21,8 +22,8 @@ def list_containers(all: bool = False, filters: Dict[str, str] = None) -> List[C
 
 
 @task
-def pull_image(x: Union[str, List[str]], quiet: bool = False) -> Union[Image, List[Image]]:
-    return docker.pull(x=x, quiet=quiet)
+def pull_image(image: Union[str, List[str]], quiet: bool = False) -> Union[Image, List[Image]]:
+    return docker.pull(x=image, quiet=quiet)
 
 
 @task
@@ -125,6 +126,7 @@ def create_container(
     volumes_from: List[ValidContainer] = [],
     workdir: Optional[ValidPath] = None,
 ):
+    assert isinstance(command, list), f"command should be list, not {type(command)}"
     return docker.container.create(
         image=image,
         command=command,
@@ -236,8 +238,12 @@ def remove_container(
     containers: Union[Container, str, List[Union[Container, str]]],
     force: bool = False,
     volumes: bool = False,
+    strict: bool = True,
 ):
-    return docker.container.remove(containers=containers, force=force, volumes=volumes)
+    try:
+        return docker.container.remove(containers=containers, force=force, volumes=volumes)
+    except NoSuchContainer:
+        pass
 
 
 def run_container(
