@@ -448,4 +448,13 @@ def start_container(
     )
 
 
-__all__ = ["list_images", "list_containers", "pull_image", "push_image", "create_container", "run_container"]
+__all__ = [
+    "list_images",
+    "list_containers",
+    "pull_image",
+    "push_image",
+    "create_container",
+    "run_container",
+    "remove_container",
+    "start_container",
+]
