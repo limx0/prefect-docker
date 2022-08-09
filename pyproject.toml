@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "prefect-docker"
+name = "prefect_docker"
 version = "0.1.0"
 description = ""
 authors = ["Bradley McElroy <bradley.mcelroy@live.com>"]
@@ -7,7 +7,7 @@ authors = ["Bradley McElroy <bradley.mcelroy@live.com>"]
 [tool.poetry.dependencies]
 python = ">3.7,<4.0"
 prefect = "^2.0.1"
-python-on-whales = "^0.50.0"
+python-on-whales = "^0.51.0"
 pytest = "^7.1.2"
 
 [tool.poetry.dev-dependencies]

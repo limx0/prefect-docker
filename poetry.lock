@@ -236,7 +236,7 @@ optional = false
 python-versions = "*"
 
 [package.extras]
-test = ["flake8 (==3.7.8)", "hypothesis (==3.55.3)"]
+test = ["hypothesis (==3.55.3)", "flake8 (==3.7.8)"]
 
 [[package]]
 name = "coolname"
@@ -313,7 +313,7 @@ test = ["pytest (>=6.2.4,<7.0.0)", "pytest-cov (>=2.12.0,<4.0.0)", "mypy (==0.91
 
 [[package]]
 name = "frozenlist"
-version = "1.3.0"
+version = "1.3.1"
 description = "A list-like structure which implements collections.abc.MutableSequence"
 category = "main"
 optional = false
@@ -352,7 +352,7 @@ tqdm = ["tqdm"]
 
 [[package]]
 name = "google-auth"
-version = "2.9.1"
+version = "2.10.0"
 description = "Google Authentication Library"
 category = "main"
 optional = false
@@ -588,6 +588,14 @@ python-versions = ">=3.6"
 pyparsing = ">=2.0.2,<3.0.5 || >3.0.5"
 
 [[package]]
+name = "pathspec"
+version = "0.9.0"
+description = "Utility library for gitignore style pattern matching of file paths."
+category = "main"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
+
+[[package]]
 name = "pendulum"
 version = "2.1.2"
 description = "Python datetimes made easy"
@@ -598,14 +606,6 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 [package.dependencies]
 python-dateutil = ">=2.6,<3.0"
 pytzdata = ">=2020.1"
-
-[[package]]
-name = "pickle5"
-version = "0.0.12"
-description = "Backport of the pickle 5 protocol (PEP 574) and other pickle changes"
-category = "main"
-optional = false
-python-versions = ">=3.5, <3.8"
 
 [[package]]
 name = "pluggy"
@@ -619,12 +619,12 @@ python-versions = ">=3.6"
 importlib-metadata = {version = ">=0.12", markers = "python_version < \"3.8\""}
 
 [package.extras]
-dev = ["pre-commit", "tox"]
-testing = ["pytest", "pytest-benchmark"]
+testing = ["pytest-benchmark", "pytest"]
+dev = ["tox", "pre-commit"]
 
 [[package]]
 name = "prefect"
-version = "2.0.1"
+version = "2.0.3"
 description = "Workflow orchestration and management."
 category = "main"
 optional = false
@@ -652,13 +652,13 @@ importlib-metadata = {version = ">=4.4", markers = "python_version < \"3.10\""}
 jsonpatch = ">=1.32"
 kubernetes = ">=24.2.0"
 packaging = ">=21.3"
+pathspec = ">=0.8.0"
 pendulum = ">=2.1.2"
-pickle5 = {version = ">=0.0.11", markers = "python_version < \"3.8\""}
 pydantic = ">=1.8.2"
 python-slugify = ">=5.0"
 pytz = ">=2021.1"
 pyyaml = ">=5.4.1"
-readchar = ">=3.0.5"
+readchar = ">=3.0.6"
 rich = ">=11.0"
 slack-sdk = ">=3.15.1"
 sqlalchemy = {version = ">=1.4.20,<1.4.33 || >1.4.33", extras = ["asyncio"]}
@@ -668,7 +668,7 @@ typing-extensions = ">=4.0.1"
 uvicorn = ">=0.14.0"
 
 [package.extras]
-dev = ["setuptools (!=60.9.0)", "mock", "respx", "watchfiles", "virtualenv", "requests", "pyyaml", "pytkdocs (>=0.14.2)", "pytest-xdist", "pytest-timeout", "pytest-env", "pytest-cov", "pytest-asyncio (>=0.18.2)", "pytest", "pre-commit", "mypy", "moto", "mkdocstrings-python-legacy", "mkdocs-material", "mkdocs-gen-files", "mkdocs", "jinja2", "ipython", "flaky", "flake8"]
+dev = ["autoflake8", "flake8", "flaky", "ipython", "jinja2", "mkdocs", "mkdocs-gen-files", "mkdocs-material", "mkdocstrings-python-legacy", "moto", "mypy", "pre-commit", "pytest", "pytest-asyncio (>=0.18.2)", "pytest-cov", "pytest-env", "pytest-timeout", "pytest-xdist", "pytkdocs (>=0.14.2)", "pyyaml", "requests", "virtualenv", "watchfiles", "respx", "mock", "setuptools (!=60.9.0)"]
 
 [[package]]
 name = "py"
@@ -774,7 +774,7 @@ six = ">=1.5"
 
 [[package]]
 name = "python-on-whales"
-version = "0.50.0"
+version = "0.51.1"
 description = "A Docker client for Python, designed to be fun and intuitive!"
 category = "main"
 optional = false
@@ -945,7 +945,7 @@ python-versions = ">=3.5"
 
 [[package]]
 name = "sqlalchemy"
-version = "1.4.39"
+version = "1.4.40"
 description = "Database Abstraction Library"
 category = "main"
 optional = false
@@ -960,7 +960,7 @@ aiomysql = ["greenlet (!=0.4.17)", "aiomysql"]
 aiosqlite = ["typing_extensions (!=3.10.0.1)", "greenlet (!=0.4.17)", "aiosqlite"]
 asyncio = ["greenlet (!=0.4.17)"]
 asyncmy = ["greenlet (!=0.4.17)", "asyncmy (>=0.2.3,!=0.2.4)"]
-mariadb_connector = ["mariadb (>=1.0.1)"]
+mariadb_connector = ["mariadb (>=1.0.1,!=1.1.2)"]
 mssql = ["pyodbc"]
 mssql_pymssql = ["pymssql"]
 mssql_pyodbc = ["pyodbc"]
@@ -1044,10 +1044,10 @@ python-versions = ">=3.6"
 click = ">=7.1.1,<9.0.0"
 
 [package.extras]
-all = ["colorama (>=0.4.3,<0.5.0)", "shellingham (>=1.3.0,<2.0.0)", "rich (>=10.11.0,<13.0.0)"]
-dev = ["autoflake (>=1.3.1,<2.0.0)", "flake8 (>=3.8.3,<4.0.0)", "pre-commit (>=2.17.0,<3.0.0)"]
-doc = ["mkdocs (>=1.1.2,<2.0.0)", "mkdocs-material (>=8.1.4,<9.0.0)", "mdx-include (>=1.4.1,<2.0.0)"]
-test = ["shellingham (>=1.3.0,<2.0.0)", "pytest (>=4.4.0,<5.4.0)", "pytest-cov (>=2.10.0,<3.0.0)", "coverage (>=5.2,<6.0)", "pytest-xdist (>=1.32.0,<2.0.0)", "pytest-sugar (>=0.9.4,<0.10.0)", "mypy (==0.910)", "black (>=22.3.0,<23.0.0)", "isort (>=5.0.6,<6.0.0)", "rich (>=10.11.0,<13.0.0)"]
+test = ["rich (>=10.11.0,<13.0.0)", "isort (>=5.0.6,<6.0.0)", "black (>=22.3.0,<23.0.0)", "mypy (==0.910)", "pytest-sugar (>=0.9.4,<0.10.0)", "pytest-xdist (>=1.32.0,<2.0.0)", "coverage (>=5.2,<6.0)", "pytest-cov (>=2.10.0,<3.0.0)", "pytest (>=4.4.0,<5.4.0)", "shellingham (>=1.3.0,<2.0.0)"]
+doc = ["mdx-include (>=1.4.1,<2.0.0)", "mkdocs-material (>=8.1.4,<9.0.0)", "mkdocs (>=1.1.2,<2.0.0)"]
+dev = ["pre-commit (>=2.17.0,<3.0.0)", "flake8 (>=3.8.3,<4.0.0)", "autoflake (>=1.3.1,<2.0.0)"]
+all = ["rich (>=10.11.0,<13.0.0)", "shellingham (>=1.3.0,<2.0.0)", "colorama (>=0.4.3,<0.5.0)"]
 
 [[package]]
 name = "typing-extensions"
@@ -1101,11 +1101,11 @@ test = ["websockets"]
 
 [[package]]
 name = "yarl"
-version = "1.7.2"
+version = "1.8.1"
 description = "Yet another URL library"
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [package.dependencies]
 idna = ">=2.0"
@@ -1127,7 +1127,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = ">3.7,<4.0"
-content-hash = "30e5e3583a6ffe30d5e7f12361a5cff249bde29b99ef9bb4f0b5b1931e1357e6"
+content-hash = "98e6a6be9d9e0ef7e1fa99159ea3731c097c45f6140820480d05b88777124967"
 
 [metadata.files]
 aiofiles = []
@@ -1176,8 +1176,8 @@ markupsafe = []
 multidict = []
 oauthlib = []
 packaging = []
+pathspec = []
 pendulum = []
-pickle5 = []
 pluggy = []
 prefect = []
 py = []
