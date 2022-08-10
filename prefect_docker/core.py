@@ -226,11 +226,13 @@ def create_container(
 def stop_container(
     containers: Union[ValidContainer, List[ValidContainer]],
     time: Union[int, timedelta] = None,
+    strict: bool = True,
 ):
-    return docker.container.stop(
-        containers=containers,
-        time=time,
-    )
+    try:
+        return docker.container.stop(containers=containers, time=time)
+    except NoSuchContainer:
+        if strict:
+            raise
 
 
 @task
@@ -243,7 +245,8 @@ def remove_container(
     try:
         return docker.container.remove(containers=containers, force=force, volumes=volumes)
     except NoSuchContainer:
-        pass
+        if strict:
+            raise
 
 
 def run_container(
