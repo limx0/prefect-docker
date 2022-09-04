@@ -466,4 +466,5 @@ __all__ = [
     "run_container",
     "remove_container",
     "start_container",
+    "stop_container",
 ]
